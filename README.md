@@ -2,8 +2,12 @@
 
 ## Note for grader
 
+
 The complete submission is posted on RPUBS here: (http://rpubs.com/jrpineda/noaa).
 
+
+
+Synopsis
 -----
 
 What have the effects of extreme weather been on the United States from 1950-2011? I answer this question in terms of human and economic cost in the following three graphs:
