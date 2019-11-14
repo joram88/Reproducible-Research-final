@@ -33,4 +33,4 @@ Finally, since this is a time series and extreme climate is a very relevant subj
 
 
 
-This graph further demonstrates that the cost of extreme weather will likely continue to increase, potentially reaching hundreds of billions of dollars a year as [Yale researches have pointed out in April 2019.](https://www.yaleclimateconnections.org/2019/04/climate-change-could-cost-u-s-economy-billions)
+This graph further demonstrates that the cost of extreme weather will likely continue to increase, potentially reaching hundreds of billions of dollars a year according to [recent estimations done by Yale University researchers.](https://www.yaleclimateconnections.org/2019/04/climate-change-could-cost-u-s-economy-billions)
