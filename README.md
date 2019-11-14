@@ -2,7 +2,7 @@
 
 ## Note for grader
 
-The complete submission is in pdf format in index.PDF.
+The complete submission is in pdf format in index.PDF as well as on RPUBS here (http://rpubs.com/jrpineda/noaa).
 
 -----
 
