@@ -1,16 +1,30 @@
 ---
-title: "Analyzing NWS Storm Data"
-output: html_document
+title: "Analyzing NOAA Storm Data"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## NWS STORM DATA ANALYSIS
+## Synopsis
+
+What have the effects of extreme weather been on the United States from 1950-2011? I answer this question in terms of human and economic cost in the following three graphs:
+
+1) Graph 1 - A table showing the frequency and the cost of each event type in the data
+2) Graph 2 - The human cost in injuries and fatalities of each event type
+3) Graph 3 - How the frequency of these events have changed from 1950 - 2011
 
 
-```{r storm}
+## DATA PROCESSING
+
+```{r data processing}
+
+#CODE TO REPRODUCE OUTPUT
+
 library(downloader)
 library(tidyverse)
 library(ggrepel)
@@ -29,7 +43,7 @@ storm$EVTYPE[storm$EVTYPE %in% "THUNDERSTORM WINDS"] <- "THUNDERSTORM WIND"
 storm$EVTYPE[storm$EVTYPE %in% "MARINE TSTM WIND"] <- "MARINE THUNDERSTORM WIND"
 
 
-#First we look at what the top 20 most common event is in the data
+#First we look at what the top 20 most common events are in the data
 
 count <- head(arrange(storm %>% count(EVTYPE), desc(n)), n=20)
 count$rank <- seq(20)
@@ -75,9 +89,11 @@ top <- filter(merge(storm, count), top == "X" & rank < 11)
 
 ```
 
-## GRAPHS
+## RESULTS
 
-```{r pressure, echo=TRUE}
+First, I wished to know the most common storm "event types" in US during this time period as well as the economic cost, plotting both elements on a single table. Here, we can see that despite being a common event, hail has lower costs, while tornadoes are the inverse: rare yet costly.
+
+```{r results, echo=TRUE}
 
 ggplot(propdmg, aes(x = dmg, y = n))+
         geom_point()+
@@ -87,6 +103,11 @@ ggplot(propdmg, aes(x = dmg, y = n))+
              title = "Damage per Event (TOP 10)*",
              caption = "*In terms of damage in dollars")+
         theme_economist()
+```
+
+The severity of tornadoes is further reflected in the next chart showing injuries and fatalities. Here we see that of the top 10 disasters, tornadoes are deadliest, followed by thunderstorm winds as a distant second.
+
+```{results2, echo=TRUE}
 
 ggplot(hurt2, aes(EVTYPE, totals))+
         geom_bar(aes(fill = Incident), position = position_stack(reverse = TRUE),
@@ -96,6 +117,12 @@ ggplot(hurt2, aes(EVTYPE, totals))+
              title = "Fatalities and Injuries by Type of Event (TOP 10)*",
              caption = "*In terms of total injuries and fatalities")+
         theme_igray()
+```
+
+Finally, since this is a time series and extreme climate is a very relevant subject in the era of climate change, I plotted these events chronologically. Here we can see that, assuming a constant methodology, these events are increasing in frequency.
+
+```{results3, echo=TRUE}
+
 
 y <- ggplot(top, aes(year))
 y+geom_bar(aes(fill=EVTYPE))+
@@ -106,3 +133,5 @@ y+geom_bar(aes(fill=EVTYPE))+
              scale_fill_brewer(palette="RdYlBu")
 
 ```
+
+This graph further demonstrates that the cost of extreme weather will likely continue to increase, potentially reaching hundreds of billions of dollars a year as Yale researches have pointed out in April 2019. https://www.yaleclimateconnections.org/2019/04/climate-change-could-cost-u-s-economy-billions/
