@@ -39,9 +39,9 @@ propdmg <- arrange(merge(propdmg, count))
 ggplot(propdmg, aes(x = dmg, y = n))+
         geom_point()+
         geom_label_repel(size = 2.5, label=propdmg$EVTYPE)+
-        labs(x = "Property and Crop Damage",
+        labs(x = "Property and Crop Damage (USD)",
              y = "Number of Events",
-             title = "Damage per Event (TOP 10*)",
+             title = "Damage per Event (TOP 10)*",
              caption = "*In terms of damage in dollars")+
         theme_economist()
 
@@ -70,7 +70,8 @@ ggplot(hurt2, aes(EVTYPE, totals))+
                  stat="identity")+coord_flip()+
         labs(y = "Total Individuals",
              x = NULL,
-             title = "Fatalities and Injuries by Type of Event")+
+             title = "Fatalities and Injuries by Type of Event (TOP 10)*",
+             caption = "*In terms of total injuries and fatalities")+
         theme_igray()
 
 ####Changes over time and the composition of these disasters
