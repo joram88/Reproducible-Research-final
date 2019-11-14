@@ -71,6 +71,8 @@ ggplot(hurt2, aes(EVTYPE, totals))+
              title = "Fatalities and Injuries by Type of Event")+
         theme_igray()
 
+
+################################################
 ####Changes over time and the composition of these disasters
 
 storm$date <- mdy_hms(storm$BGN_DATE)
