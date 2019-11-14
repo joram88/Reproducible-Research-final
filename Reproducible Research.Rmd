@@ -107,7 +107,7 @@ ggplot(propdmg, aes(x = dmg, y = n))+
 
 The severity of tornadoes is further reflected in the next chart showing injuries and fatalities. Here we see that of the top 10 disasters, tornadoes are deadliest, followed by thunderstorm winds as a distant second.
 
-```{results2, echo=TRUE}
+```{r results2, echo=TRUE}
 
 ggplot(hurt2, aes(EVTYPE, totals))+
         geom_bar(aes(fill = Incident), position = position_stack(reverse = TRUE),
@@ -121,7 +121,7 @@ ggplot(hurt2, aes(EVTYPE, totals))+
 
 Finally, since this is a time series and extreme climate is a very relevant subject in the era of climate change, I plotted these events chronologically. Here we can see that, assuming a constant methodology, these events are increasing in frequency.
 
-```{results3, echo=TRUE}
+```{r results3, echo=TRUE}
 
 
 y <- ggplot(top, aes(year))
