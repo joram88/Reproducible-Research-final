@@ -23,21 +23,23 @@ count$rank <- seq(20)
 count$top <- "X"
 
 
-#Next we see which caused the most property damage
+#Next we see which caused the most damage
+
+storm$dmg <- storm$PROPDMG+storm$CROPDMG
 
 propdmg <- head(arrange(storm %>% 
                                 group_by(EVTYPE) %>% 
-                                summarize(PROPDMG = sum(PROPDMG)),
-                        desc(PROPDMG)), n = 10)
+                                summarize(dmg = sum(dmg)),
+                        desc(dmg)), n = 10)
 
 propdmg <- arrange(merge(propdmg, count))
 
 #Next a graph of cost per incident
 
-ggplot(propdmg, aes(x = PROPDMG, y = n))+
+ggplot(propdmg, aes(x = dmg, y = n))+
         geom_point()+
         geom_label_repel(size = 2.5, label=propdmg$EVTYPE)+
-        labs(x = "Property Damage",
+        labs(x = "Property and Crop Damage",
              y = "Number of Events",
              title = "Damage per Event (TOP 10*)",
              caption = "*In terms of damage in dollars")+
@@ -71,8 +73,6 @@ ggplot(hurt2, aes(EVTYPE, totals))+
              title = "Fatalities and Injuries by Type of Event")+
         theme_igray()
 
-
-################################################
 ####Changes over time and the composition of these disasters
 
 storm$date <- mdy_hms(storm$BGN_DATE)
